@@ -2,6 +2,8 @@
 
 Bài test Intern Developer. Ứng dụng web quản lý công việc có **đăng nhập / đăng ký bằng JWT**.
 
+🔗 **Demo trực tuyến:** https://todolist-diepau.up.railway.app
+
 - **Backend:** Java 23 + Spring Boot 3.5 (xử lý API & logic)
 - **Giao diện:** Thymeleaf + Bootstrap 5 (render từ server)
 - **Bảo mật:** Spring Security + JWT (token lưu trong cookie HttpOnly)
