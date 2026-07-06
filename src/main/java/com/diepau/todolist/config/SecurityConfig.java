@@ -1,6 +1,7 @@
 package com.diepau.todolist.config;
 
 import com.diepau.todolist.security.JwtCookieFilter;
+import jakarta.servlet.DispatcherType;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +44,9 @@ public class SecurityConfig {
             .headers(h -> h.frameOptions(f -> f.disable()))
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/register", "/css/**", "/js/**", "/h2-console/**").permitAll()
+                // Allow internal forward/error dispatches (the H2 console renders itself via forwards).
+                .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
+                .requestMatchers("/login", "/register", "/css/**", "/js/**", "/error", "/h2-console/**").permitAll()
                 .anyRequest().authenticated())
             .exceptionHandling(e -> e.authenticationEntryPoint(
                 (req, res, ex) -> res.sendRedirect("/login")))
