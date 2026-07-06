@@ -2,10 +2,11 @@
 
 Bài test Intern Developer. Ứng dụng web quản lý công việc có **đăng nhập / đăng ký bằng JWT**.
 
-- **Backend:** Java 25 + Spring Boot 4.1 (xử lý API & logic)
+- **Backend:** Java 23 + Spring Boot 3.5 (xử lý API & logic)
 - **Giao diện:** Thymeleaf + Bootstrap 5 (render từ server)
 - **Bảo mật:** Spring Security + JWT (token lưu trong cookie HttpOnly)
-- **Cơ sở dữ liệu:** H2 (chạy trong bộ nhớ RAM — không cần cài đặt gì thêm)
+- **Cơ sở dữ liệu:** H2 lưu ra file (không cần cài đặt, dữ liệu không mất khi restart)
+- **Triển khai:** Dockerfile sẵn sàng deploy lên Railway
 
 ## Chức năng
 
@@ -18,7 +19,7 @@ Bài test Intern Developer. Ứng dụng web quản lý công việc có **đăn
 
 ## Yêu cầu môi trường
 
-- JDK 17 trở lên (project cấu hình Java 25)
+- JDK 23 (project cấu hình Java 23)
 - Có sẵn Maven, hoặc dùng Maven Wrapper `mvnw` kèm theo (không cần cài Maven)
 
 ## Cách chạy
@@ -89,5 +90,3 @@ src/main/resources/
 ```bash
 ./mvnw test
 ```
-
-Xem thêm **NOTES.md** để hiểu các đoạn code quan trọng.
