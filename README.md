@@ -87,8 +87,30 @@ src/main/resources/
 └── templates/                    # giao diện Thymeleaf (login, register, tasks, edit)
 ```
 
+## Các đường dẫn (routes)
+
+| Method | Đường dẫn | Chức năng |
+|--------|-----------|-----------|
+| GET/POST | `/register` | Đăng ký tài khoản |
+| GET/POST | `/login` | Đăng nhập (tạo JWT, lưu cookie) |
+| POST | `/logout` | Đăng xuất (xóa cookie) |
+| GET | `/tasks?status=&q=` | Danh sách + lọc trạng thái + tìm kiếm |
+| POST | `/tasks` | Thêm công việc |
+| GET/POST | `/tasks/{id}/edit` | Chỉnh sửa công việc |
+| POST | `/tasks/{id}/toggle` | Đổi trạng thái hoàn thành |
+| POST | `/tasks/{id}/delete` | Xóa công việc |
+
 ## Chạy test
 
 ```bash
+# Windows
+mvnw.cmd test
+# macOS / Linux
 ./mvnw test
 ```
+
+Các test nằm trong `src/test/java/com/diepau/todolist/`:
+
+- `JwtServiceTest` — tạo/đọc JWT, phát hiện token bị sửa.
+- `UserServiceTest` — mã hóa mật khẩu bcrypt, chặn username trùng, kiểm tra đăng nhập.
+- `TaskServiceTest` — CRUD, lọc theo trạng thái, tìm kiếm, và chặn user thao tác trên công việc của người khác.
