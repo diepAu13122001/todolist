@@ -1,0 +1,9 @@
+target/
+data/
+.idea/
+*.iml
+.git/
+.gitignore
+HELP.md
+README.md
+NOTES.md

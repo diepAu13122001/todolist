@@ -2,7 +2,7 @@ package com.diepau.todolist.model;
 
 import jakarta.persistence.*;
 
-// A user account. Password is always stored bcrypt-hashed, never in plain text.
+//Password is stored bcrypt-hashed.
 @Entity
 @Table(name = "users")
 public class User {

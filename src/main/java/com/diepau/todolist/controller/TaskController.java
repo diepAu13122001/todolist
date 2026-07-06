@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 import java.util.List;
 
-// All todo endpoints. principal.getName() is the logged-in username (set by JwtCookieFilter).
 @Controller
 public class TaskController {
 

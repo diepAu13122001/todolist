@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-// A single todo item. "owner" holds the username so each user only sees their own tasks.
 @Entity
 @Table(name = "tasks")
 public class Task {

@@ -26,6 +26,12 @@ public class JwtCookieFilter extends OncePerRequestFilter {
         this.jwtService = jwtService;
     }
 
+    // Never run this filter for the H2 console.
+    @Override
+    protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
+        return request.getRequestURI().startsWith("/h2-console");
+    }
+
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,

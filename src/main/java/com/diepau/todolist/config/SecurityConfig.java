@@ -1,6 +1,7 @@
 package com.diepau.todolist.config;
 
 import com.diepau.todolist.security.JwtCookieFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,11 +27,20 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    // Stop Spring Boot from auto-registering the JWT filter globally; it must run only inside the chain below.
+    @Bean
+    public FilterRegistrationBean<JwtCookieFilter> jwtFilterDisableAutoRegistration(JwtCookieFilter filter) {
+        FilterRegistrationBean<JwtCookieFilter> registration = new FilterRegistrationBean<>(filter);
+        registration.setEnabled(false);
+        return registration;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-            .headers(h -> h.frameOptions(f -> f.sameOrigin()))
+            // Allow the H2 console to render inside frames.
+            .headers(h -> h.frameOptions(f -> f.disable()))
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/register", "/css/**", "/js/**", "/h2-console/**").permitAll()
